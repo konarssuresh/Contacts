@@ -1,0 +1,29 @@
+<div class="container text-center">
+    <h3>Contacts</h3>
+    <div class="table">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="d-none d-lg-table-cell">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="contacts">
+                <tr *ngFor="let contact of contacts; let i=index">
+                    <td scope="row">{{contact.FirstName+' '+contact.LastName}}</td>
+                    <td class="d-none d-lg-table-cell">{{contact.Email}}</td>
+                    <td>{{contact.phoneNumber}}</td>
+                    <td>
+                        <i (click)="editContact(contact,i)"  class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <span>{{'  '}}</span>
+                        <i (click)="deleteContact(i)"  class="fa fa-trash" aria-hidden="true"></i>
+                        <span>{{'  '}}</span>
+                        <i (click)="viewDetails(i)" class="fa fa-info" aria-hidden="true"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

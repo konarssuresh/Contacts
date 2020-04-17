@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="jumbotron">
+
+
+    <h3 class="text-center">{{isEdit?'Update Contact':'Add Contact'}}</h3>
+    <form [formGroup]="contactsForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" formControlName="FirstName"/>
+            <div [hidden]="contactsForm.controls.FirstName.pristine || contactsForm.controls.FirstName.valid">
+                <p class="text-danger" *ngIf="contactsForm.controls.FirstName.errors">
+                    First Name is required!!!
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input class="form-control" type="text" formControlName="LastName"/>
+            <div [hidden]="contactsForm.controls.LastName.pristine || contactsForm.controls.LastName.valid">
+                <p class="text-danger" *ngIf="contactsForm.controls.LastName.errors && contactsForm.controls.LastName.errors.required">
+                    Last Name is required!!!
+                </p>
+            </div> 
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input class="form-control" type="number" formControlName="phoneNumber"/>
+            <div [hidden]="contactsForm.controls.phoneNumber.pristine  || contactsForm.controls.phoneNumber.valid">
+                <p class="text-danger" *ngIf="contactsForm.controls.phoneNumber.errors && contactsForm.controls.phoneNumber.errors.required">
+                    Phone number is required
+                </p>
+                <p class="text-danger" *ngIf="contactsForm.controls.phoneNumber.errors && contactsForm.controls.phoneNumber.errors.pattern">
+                    Enter valid phone number. (should be 10 digits)
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" formControlName="Email"/>
+            <div [hidden]="contactsForm.controls.Email.pristine || contactsForm.controls.Email.valid">
+                <p class="text-danger" *ngIf="contactsForm.controls.Email.errors && contactsForm.controls.Email.errors.required">
+                    Email is required
+                </p>
+                <p class="text-danger" *ngIf="contactsForm.controls.Email.errors && contactsForm.controls.Email.errors.email">
+                    Enter valid email
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="flip-1">Status</label>
+            <select  id="flip-1" class="form-control" formControlName="status">
+                <option value="" selected>Select any option below</option>
+                <option value="Active" class="text-success">Active</option>
+                <option value="Inactive" class="text-danger">Inactive</option>
+            </select>
+            <div [hidden]="contactsForm.controls.status.pristine||contactsForm.controls.status.valid">
+                <p class="text-danger" *ngIf="contactsForm.controls.status.errors&& contactsForm.controls.status.errors.required">
+                    Status value is required 
+                </p>
+            </div>
+        </div>
+
+        <button [disabled]="!contactsForm.valid" class="btn btn-primary form-control">{{isEdit?'Update Contact':'Add Contact'}}</button>
+
+    </form>
+    <p class="text-danger" *ngIf="errorMsg">{{errorMsg}}</p>
+    </div>
+</div>

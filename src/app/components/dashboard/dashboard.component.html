@@ -1,0 +1,26 @@
+<div class="container">
+    <div  class="jumbotron">
+        <h3 class="text-center">Contacts App:-</h3>
+        <p class="text-justify">This is a sample app which is used to store contacts. This application makes use of localstorage 
+            used in the browser instead of making API calls which can be easily replaced in presence of APIs. 
+        </p>
+        <p class="text-center">This App Performs following operations:-</p>
+        <ul style="padding: auto;">
+            <li >View Contacts :- View the list of contacts stored.</li>
+            <li >Add New Contact :- Add a new contact to the List.</li>
+            <li>Edit Contact:- Edit the details of the contact.</li>
+            <li>Delete Contact:- To remove the contact from the list.</li>
+            <li>Activate/Inactivate Contact:- To change the status of contact.</li>
+        </ul>
+        <div class="row">
+            <div class="col-lg-6 col-xl-6 col-sm-6 col-xs-12">
+                <button class="btn btn-success btn-lg form-control" [routerLink]='["/add"]'>Add Contact</button>
+            </div>
+            <div class="col-lg-6 col-xl-6 col-sm-6 col-xs-12">
+                <button class="btn btn-primary btn-lg form-control" [routerLink]='["/list"]'>View Contact List</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

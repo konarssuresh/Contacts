@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="jumbotron">
+        <i [routerLink]="['/list']" class="fa fa-3x fa-long-arrow-left" aria-hidden="true"></i>
+        <h3 class="text-center">{{contact.FirstName+' '+contact.LastName}}</h3>
+        <hr>
+        <h4 class="text-center"><span class="text-primary">First Name </span> :- {{contact.FirstName}}</h4>
+        <br>
+        <h4 class="text-center"><span class="text-primary">Last Name </span>:- {{contact.LastName}}</h4>
+        <br>
+        <h4 class="text-center"><span class="text-primary">Email </span>:- {{contact.Email}}</h4>
+        <br>
+        <h4 class="text-center"><span class="text-primary">Phone Number </span>:- {{contact.phoneNumber}}</h4>
+        <br>
+        <h4 class="text-center"><span class="text-primary">Status </span>:- {{contact.status}}</h4>    
+    </div>
+</div>

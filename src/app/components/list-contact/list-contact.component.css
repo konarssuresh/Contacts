@@ -1,0 +1,10 @@
+table{
+    margin: auto;
+    background-color: rgba(233,236,239,0.8);
+}
+@media (min-width:750px){
+    .table{
+        width:700px;
+        margin:auto;
+    }
+}
