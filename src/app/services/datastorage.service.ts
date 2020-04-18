@@ -61,7 +61,7 @@ export class DataStorageService {
   deleteContact(contact:Contact){
     let savedContacts=this.getContacts();
     let index= savedContacts.findIndex((savedContact)=>{
-      if(savedContact==contact){
+      if(contact.FirstName==savedContact.FirstName && contact.LastName==savedContact.LastName && contact.phoneNumber==savedContact.phoneNumber){
         return true;
       }
     })
