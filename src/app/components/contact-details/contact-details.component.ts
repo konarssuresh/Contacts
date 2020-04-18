@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataStorageService } from 'src/app/services/datastorage.service';
 import Contact from 'src/app/models/Contact';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-contact-details',
@@ -11,17 +12,20 @@ import Contact from 'src/app/models/Contact';
 export class ContactDetailsComponent implements OnInit {
   stateObj:any;
   contact:Contact;
-  constructor(private router:Router,private activatedRoute:ActivatedRoute,private dataService:DataStorageService ) { }
+  constructor(private activatedRoute:ActivatedRoute,private router:Router ) { }
 
   ngOnInit(): void {
 
-    this.activatedRoute.params.subscribe((params)=>{
-      console.log(params);
-      this.contact=this.dataService.getContact(params['index']);
-      console.log(this.contact);
+    this.activatedRoute.paramMap.pipe(
+      map(() => window.history.state)
+    ).subscribe((data)=>{
+      if(data.contact){
+        this.stateObj=data;
+        this.contact=data.contact;
+      }
+      else{
+        this.router.navigate(['dashboard']);
+      }
     })
   }
-
-  
-
 }

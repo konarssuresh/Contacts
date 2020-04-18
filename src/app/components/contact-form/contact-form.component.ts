@@ -15,19 +15,14 @@ export class ContactFormComponent implements OnInit {
   errorMsg:string;
   isEdit:boolean;
   stateObj:any;
+  oldValueToEdit:Contact;
+
   constructor(private fb:FormBuilder,private activatedRoute:ActivatedRoute,private router:Router
     ,private storageService:DataStorageService) { }
 
   ngOnInit(): void {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-          return;
-      }
-      window.scrollTo(0, 0)
-     }); 
-     
     let ContactObj:Contact;
-
+    
     this.activatedRoute.paramMap.pipe(
       map(() => window.history.state)
     ).subscribe((data)=>{
@@ -66,7 +61,7 @@ export class ContactFormComponent implements OnInit {
           phoneNumber:this.contactsForm.controls.phoneNumber.value,
           status:this.contactsForm.controls.status.value
       }
-      this.storageService.editContact(contactToUpdate,this.stateObj.index);
+      this.storageService.editContact(contactToUpdate,this.stateObj.contact);
       this.router.navigateByUrl('/list');
     }else{
       let contactToAdd:Contact={
@@ -79,7 +74,6 @@ export class ContactFormComponent implements OnInit {
 
       let added:boolean=this.storageService.addContact(contactToAdd);
       if(added){
-        console.log("added successfully");
         this.router.navigate(['list']);
         this.errorMsg=null;
       }else{

@@ -46,15 +46,25 @@ export class DataStorageService {
     }
   }
 
-  editContact(contact:Contact,index:number){
-    let savedContact=this.getContacts();
-    savedContact[index]=contact;
-    this.storage.set(STORAGE_KEY,savedContact);
+  editContact(newContact:Contact,oldContact:Contact){
+    let savedContacts=this.getContacts();
+    let index= savedContacts.findIndex((contact)=>{
+      if(contact.FirstName==oldContact.FirstName && contact.LastName==oldContact.LastName && contact.phoneNumber==oldContact.phoneNumber){
+        return true;
+      }
+    })
+    savedContacts[index]=newContact;
+    this.storage.set(STORAGE_KEY,savedContacts);
     return true;
   }
 
-  deleteContact(index:number){
+  deleteContact(contact:Contact){
     let savedContacts=this.getContacts();
+    let index= savedContacts.findIndex((savedContact)=>{
+      if(savedContact==contact){
+        return true;
+      }
+    })
     savedContacts.splice(index,1);
     this.storage.set(STORAGE_KEY,savedContacts);
   }

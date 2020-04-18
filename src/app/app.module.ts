@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {StorageServiceModule} from 'ngx-webstorage-service';
@@ -11,6 +11,7 @@ import { ContactDetailsComponent } from './components/contact-details/contact-de
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ListContactComponent,
     ContactFormComponent,
     ContactDetailsComponent,
-    DashboardComponent
+    DashboardComponent,
+    FilterPipe
   ],
   imports: [
     TooltipModule.forRoot(),
@@ -26,7 +28,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     BrowserModule,
     AppRoutingModule,
     StorageServiceModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [DataStorageService],
   bootstrap: [AppComponent]

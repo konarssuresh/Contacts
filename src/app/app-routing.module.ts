@@ -10,7 +10,7 @@ const routes: Routes = [{path:'list',component:ListContactComponent},
 {path:'dashboard',component:DashboardComponent},
 {path:'add',component:ContactFormComponent},
 {path:'update',component:ContactFormComponent},
-{path:'detail/:index',component:ContactDetailsComponent},
+{path:'detail',component:ContactDetailsComponent},
 {path:'',redirectTo:'/dashboard',pathMatch:'full'}];
 
 @NgModule({

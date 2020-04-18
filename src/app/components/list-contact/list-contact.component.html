@@ -1,7 +1,10 @@
+<i class="fa fa-plus fa-2x" [routerLink]='["/add"]' tooltip="Add new contact" aria-hidden="true">Add</i>
 <div class="container text-center">
     <h3>Contacts</h3>
+
+    <input type="text" [(ngModel)]="filterText" #filterInput name="filterInput" class="form-control" placeholder="filter" tooltip="Filter by name"/>
     <div class="table">
-        <table class="table">
+        <table *ngIf="contacts && contacts.length>0" class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
@@ -10,20 +13,37 @@
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
-            <tbody *ngIf="contacts">
-                <tr *ngFor="let contact of contacts; let i=index">
+            <tbody >
+                <tr *ngFor="let contact of contacts|filter:filterText; let i=index" >
                     <td scope="row">{{contact.FirstName+' '+contact.LastName}}</td>
                     <td class="d-none d-lg-table-cell">{{contact.Email}}</td>
                     <td>{{contact.phoneNumber}}</td>
                     <td>
-                        <i (click)="editContact(contact,i)"  class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <i (click)="openEditModal(editTemplate,contact,i)" tooltip="Edit Contact"  class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         <span>{{'  '}}</span>
-                        <i (click)="deleteContact(i)"  class="fa fa-trash" aria-hidden="true"></i>
+                        <i (click)="openDeleteModal(deleteTemplate,contact,i)" tooltip="Delete Contact"  class="fa fa-trash" aria-hidden="true"></i>
                         <span>{{'  '}}</span>
-                        <i (click)="viewDetails(i)" class="fa fa-info" aria-hidden="true"></i>
+                        <i (click)="viewDetails(contact)" tooltip="View Details" class="fa fa-info" aria-hidden="true"></i>
                     </td>
                 </tr>
             </tbody>
         </table>
+        
     </div>
 </div>
+
+<ng-template #deleteTemplate>
+    <div class="modal-body text-center">
+      <p>Do you want to <strong class="text-danger">delete</strong> this contact?</p>
+      <button type="button" class="btn btn-danger" (click)="confirmDelete()" >Yes</button>
+      <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    </div>
+</ng-template>
+
+<ng-template #editTemplate>
+    <div class="modal-body text-center">
+      <p>Do you want to <strong class="text-warning">edit</strong> this contact?</p>
+      <button type="button" class="btn btn-warning" (click)="confirmEdit()" >Yes</button>
+      <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    </div>
+</ng-template>
